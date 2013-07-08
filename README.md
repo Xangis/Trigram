@@ -1,7 +1,8 @@
 Trigram
 =======
 
-A trigram generator that creates new plausible-sounding words based on a list of input words.
+This is a trigram generator that creates new plausible-sounding words based on a list of
+input words. It is written in C++ and uses wxWidgets for the user interface.
 
 This is the source code used to create the ZC Trigram Generator available here:
 http://zetacentauri.com/software_trigram.htm
