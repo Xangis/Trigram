@@ -292,6 +292,6 @@ char MainDlg::GetLetter( int number )
 
 void MainDlg::OnButtonAboutClick( wxCommandEvent& event )
 {
-	wxMessageBox( "ZC Trigram Generator is copyright (c) 2006-2013 Jason Champion.\nhttp://www.zetacentauri.com\n\nThis application is distributed under the terms of hte MIT License.", "About Trigram Generator", wxOK );
+	wxMessageBox( "ZC Trigram Generator is copyright (c) 2006-2013 Jason Champion.\nhttp://www.zetacentauri.com\n\nThis application is distributed under the terms of the MIT License.", "About Trigram Generator", wxOK );
 	event.Skip();
 }
