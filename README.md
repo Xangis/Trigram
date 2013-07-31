@@ -12,7 +12,7 @@ for use on Linux.  If your wx-config is in a different location than that in the
 change the path in the Makefile.
 
 This should also build on Windows, but you'll have to create your own Visual Studio project.
-There are two .hpp and two .cpp files, so that should be easy.  Ssetting paths and libraries
+There are two .hpp and two .cpp files, so that should be easy. Setting paths and libraries
 in Visual Studio is the most annoying part of creating a project, and wxWidgets is a
 particular nuisance in that respect.
 
