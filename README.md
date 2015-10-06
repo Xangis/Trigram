@@ -2,10 +2,12 @@ Trigram
 =======
 
 This is a trigram generator that creates new plausible-sounding words based on a list of
-input words. It is written in C++ and uses wxWidgets for the user interface.
+input words. It is written in C++ and uses wxWidgets for the user interface. It was
+originally available at http://zetacentauri.com
 
-This is the source code used to create the ZC Trigram Generator available here:
-http://zetacentauri.com/software_trigram.htm
+![ZC Trigram Generator Screenshot](https://github.com/Xangis/Trigram/blob/master/images/Trigram1b.png)
+
+A prebuilt Windows install is in the installer directory.
 
 Building requires that wxWidgets 2.6+ be installed (2.8 recommended).  There is a Makefile
 for use on Linux.  If your wx-config is in a different location than that in the Makfile,
