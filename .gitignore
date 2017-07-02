@@ -14,3 +14,12 @@
 
 # Executable
 TrigramGenerator
+
+# Visual Studio Files
+*.sdf
+*.suo
+*.filters
+*.user
+ipch/
+Debug/
+Release/

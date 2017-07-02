@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Trigram", "Trigram.vcxproj", "{28D4EEFF-762D-54B9-8E1A-3D4E840A5111}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8A0206D4-A4AF-4B75-8EC5-9E45B8B23C9F}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{28D4EEFF-762D-54B9-8E1A-3D4E840A5111}.Debug|Win32.ActiveCfg = Debug|Win32
+		{28D4EEFF-762D-54B9-8E1A-3D4E840A5111}.Debug|Win32.Build.0 = Debug|Win32
+		{28D4EEFF-762D-54B9-8E1A-3D4E840A5111}.Release|Win32.ActiveCfg = Release|Win32
+		{28D4EEFF-762D-54B9-8E1A-3D4E840A5111}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
