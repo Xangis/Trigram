@@ -3,16 +3,19 @@
 // Purpose:     Main Application Window
 // Author:      Jason Champion
 // Created:     02/08/2006 11:45:51
-// Copyright:   (c) 2006-2013
+// Copyright:   (c) 2006-2017
 // Licence:     MIT License
 /////////////////////////////////////////////////////////////////////////////
 
 #include "wx/wx.h"
+#include "wx/aboutdlg.h"
+#include "wx/textfile.h"
 #include "maindlg.hpp"
 
 IMPLEMENT_DYNAMIC_CLASS( MainDlg, wxDialog )
 
 BEGIN_EVENT_TABLE( MainDlg, wxDialog )
+	EVT_BUTTON( ID_BUTTON_LOAD, MainDlg::OnButtonLoadClick )
     EVT_BUTTON( ID_BUTTON_DIGRAM, MainDlg::OnButtonDigramClick )
 	EVT_BUTTON( ID_BUTTON_ABOUT, MainDlg::OnButtonAboutClick )
     EVT_CLOSE( MainDlg::OnQuit )
@@ -42,6 +45,7 @@ bool MainDlg::Create( wxWindow* parent, wxWindowID id, const wxString& caption, 
     _txtInput = NULL;
 	_txtOutput = NULL;
     _btnDigram = NULL;
+	_btnLoad = NULL;
 	_btnTrigram = NULL;
     _txtStatus = NULL;
 	memset( _trigramWeights, 0, sizeof(_trigramWeights ));
@@ -52,10 +56,9 @@ bool MainDlg::Create( wxWindow* parent, wxWindowID id, const wxString& caption, 
 
 	wxInitAllImageHandlers();
     CreateControls();
-	wxIcon icon;
-	if( icon.LoadFile(_T("trigram.ico"), wxBITMAP_TYPE_ICO ))
+	if( _icon.LoadFile(_T("trigram.ico"), wxBITMAP_TYPE_ICO ))
 	{
-		SetIcon(icon);
+		SetIcon(_icon);
 	}
     GetSizer()->Fit(this);
     GetSizer()->SetSizeHints(this);
@@ -90,6 +93,9 @@ void MainDlg::CreateControls()
 
 	_spnNumWords = new wxSpinCtrl( itemDialog1, ID_NUM_WORDS, "10", wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 0, 2000, 10 );
 	itemBoxSizer4->Add(_spnNumWords, 0, wxALIGN_CENTER_VERTICAL|wxALIGN_CENTER_HORIZONTAL, 5 );
+
+    _btnLoad = new wxButton( itemDialog1, ID_BUTTON_LOAD, _("Load Text"), wxDefaultPosition, wxDefaultSize, 0 );
+    itemBoxSizer4->Add(_btnLoad, 0, wxALIGN_CENTER_VERTICAL|wxALIGN_CENTER_HORIZONTAL, 5);
 
     _btnDigram = new wxButton( itemDialog1, ID_BUTTON_DIGRAM, _("Generate"), wxDefaultPosition, wxDefaultSize, 0 );
     itemBoxSizer4->Add(_btnDigram, 0, wxALIGN_CENTER_VERTICAL|wxALIGN_CENTER_HORIZONTAL, 5);
@@ -138,7 +144,7 @@ wxIcon MainDlg::GetIconResource( const wxString& name )
 }
 
 /*!
- * wxEVT_COMMAND_BUTTON_CLICKED event handler for ID_BUTTON_PLAY
+ * wxEVT_COMMAND_BUTTON_CLICKED event handler for ID_BUTTON_DIGRAM
  */
 void MainDlg::OnButtonDigramClick( wxCommandEvent& event )
 {
@@ -190,14 +196,18 @@ void MainDlg::OnButtonDigramClick( wxCommandEvent& event )
 	while (words < numWords)
 	{
 		char newletter = GenerateRandomLetter(true);
-		outputText += newletter;
-		_previousPreviousLetter = _previousLetter;
-		_previousLetter = GetLetterNumber(newletter);
 		if( newletter == 32 )
 		{
 			words++;
+			outputText += "\n";
+		}
+		else
+		{
+			outputText += newletter;
 		}
 		letters++;
+		_previousPreviousLetter = _previousLetter;
+		_previousLetter = GetLetterNumber(newletter);
 		if( letters > 12000 )
 		{
 			_txtOutput->SetValue("Generated output invalid.  Are you sure you have enough input text?");
@@ -214,6 +224,37 @@ void MainDlg::OnButtonDigramClick( wxCommandEvent& event )
 
     event.Skip();
 }
+
+/*!
+ * wxEVT_COMMAND_BUTTON_CLICKED event handler for ID_BUTTON_LOAD
+ */
+void MainDlg::OnButtonLoadClick( wxCommandEvent& event )
+{
+	wxString path = _(".\\");
+	wxFileDialog fdialog( this, _("Load Text File"), path, _(""), _("Text Files (*.txt) |*.txt||"), wxFD_OPEN );
+
+	wxString filename;
+
+	if( fdialog.ShowModal() != wxID_OK )
+	{
+		return;
+	}
+
+	_txtInput->Clear();
+
+	wxString fname = fdialog.GetPath();
+
+	wxTextFile tfile;
+	tfile.Open(fname);
+	while(!tfile.Eof())
+	{
+		_txtInput->AppendText(tfile.GetNextLine() + "\n");
+	}
+	tfile.Close();
+
+    event.Skip();
+}
+
 
 /**
  @brief  EVT_QUIT handler.
@@ -292,6 +333,18 @@ char MainDlg::GetLetter( int number )
 
 void MainDlg::OnButtonAboutClick( wxCommandEvent& event )
 {
-	wxMessageBox( "ZC Trigram Generator is copyright (c) 2006-2013 Jason Champion.\nhttp://www.zetacentauri.com\n\nThis application is distributed under the terms of the MIT License.", "About Trigram Generator", wxOK );
-	event.Skip();
+	// Show about box.
+    wxAboutDialogInfo info;
+    info.SetName(_("Trigram Generator"));
+    info.SetVersion(_("1.2"));
+    info.SetCopyright(_("(c) 2006-2017 Jason Champion"));
+	info.AddDeveloper(_("Jason Champion"));
+	info.SetIcon(_icon);
+	info.SetLicense(_("This application is distributed under the terms of the MIT License."));
+	info.SetWebSite(_("https://github.com/Xangis/Trigram"));
+	info.SetDescription(_("Trigram Generator uses the wxWidgets libraries."));
+
+    wxAboutBox(info);
+
+    event.Skip();
 }

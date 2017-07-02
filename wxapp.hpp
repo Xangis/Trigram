@@ -3,7 +3,7 @@
 // Purpose:     Header for Application Wrapper
 // Author:      Jason Champion
 // Created:     02/08/2006 11:42:44
-// Copyright:   (c) 2006-2013
+// Copyright:   (c) 2006-2017
 // Licence:     MIT License
 /////////////////////////////////////////////////////////////////////////////
 

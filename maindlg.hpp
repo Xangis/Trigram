@@ -3,7 +3,7 @@
 // Purpose:     Main Application Window
 // Author:      Jason Champion
 // Created:     02/08/2006 11:45:51
-// Copyright:   (c) 2006-2013
+// Copyright:   (c) 2006-2017
 // Licence:     MIT License
 /////////////////////////////////////////////////////////////////////////////
 
@@ -31,6 +31,7 @@ class wxSpinCtrl;
 #define ID_CHANNELS 10012
 #define ID_NUM_WORDS 10013
 #define ID_BUTTON_ABOUT 10014
+#define ID_BUTTON_LOAD 10015
 
 #ifndef wxCLOSE_BOX
 #define wxCLOSE_BOX 0x1000
@@ -56,32 +57,22 @@ public:
     /// Creates the controls and sizers
     void CreateControls();
 
+	void OnButtonLoadClick( wxCommandEvent& event );
     void OnButtonDigramClick( wxCommandEvent& event );
-
     void OnMouseWheel( wxMouseEvent& event );
-
     void OnMinfreqUpdated( wxSpinEvent& event );
-
     void OnMinfreqTextUpdated( wxCommandEvent& event );
-
     void OnMaxfreqUpdated( wxSpinEvent& event );
-
     void OnMaxfreqTextUpdated( wxCommandEvent& event );
-
 	void OnQuit(wxCloseEvent &event);
 	void OnButtonAboutClick( wxCommandEvent& event );
-
     wxBitmap GetBitmapResource( const wxString& name );
-
     wxIcon GetIconResource( const wxString& name );
-
     static bool ShowToolTips();
-
 	int GetLetterNumber( char letter );
 	char GenerateRandomLetter(bool trigram);
 	// Reverse of GetLetterNumber
 	char GetLetter( int number );
-
 private:
 	// 26 = SPACE
 	// 27 = period
@@ -89,10 +80,12 @@ private:
     wxTextCtrl* _txtInput;
 	wxTextCtrl* _txtOutput;
     wxButton* _btnDigram;
+	wxButton* _btnLoad;
 	wxButton* _btnTrigram;
 	wxButton* _btnAbout;
     wxStaticText* _txtStatus;
 	wxSpinCtrl* _spnNumWords;
+	wxIcon _icon;
 	int _trigramWeights[95][95][95];
 	int _totalWeight[95][95];
 	char _previousLetter;
