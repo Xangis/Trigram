@@ -11,7 +11,7 @@ downloaded more than 12,000 times before being open-sourced.
 
 A prebuilt Windows installer is in the installer directory:
 
-https://github.com/Xangis/Trigram/blob/master/installer/ZCTrigramGenerator1.2Setup.exe
+https://github.com/Xangis/Trigram/blob/master/installer/TrigramGenerator1.2Setup.exe
 
 This project uses the MIT License. See the LICENSE.TXT file for details.
 
@@ -92,6 +92,8 @@ then you need to set the library path.
 ### Changes in Version 1.2:
 
 - Added "Load Text" button to load a text file.
+- Added Visual C++ redistributable to installer so users won't have to hunt for it
+  if they don't already have it.
 
 # Development Status
 
