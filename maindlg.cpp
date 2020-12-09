@@ -1,12 +1,3 @@
-/////////////////////////////////////////////////////////////////////////////
-// Name:        MainDlg.cpp
-// Purpose:     Main Application Window
-// Author:      Jason Champion
-// Created:     02/08/2006 11:45:51
-// Copyright:   (c) 2006-2017
-// Licence:     MIT License
-/////////////////////////////////////////////////////////////////////////////
-
 #include "wx/wx.h"
 #include "wx/aboutdlg.h"
 #include "wx/textfile.h"
@@ -337,7 +328,7 @@ void MainDlg::OnButtonAboutClick( wxCommandEvent& event )
     wxAboutDialogInfo info;
     info.SetName(_("Trigram Generator"));
     info.SetVersion(_("1.2"));
-    info.SetCopyright(_("(c) 2006-2017 Jason Champion"));
+    info.SetCopyright(_("(c) 2006-2020 Lambda Centauri"));
 	info.AddDeveloper(_("Jason Champion"));
 	info.SetIcon(_icon);
 	info.SetLicense(_("This application is distributed under the terms of the MIT License."));
